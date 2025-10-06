@@ -1,2 +1,2 @@
 # Mini-Project
-This Is For College Project In Mini Project
+This Is For College's Mini Project
