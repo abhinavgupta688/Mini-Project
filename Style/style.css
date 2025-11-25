@@ -1,1 +1,9 @@
-
+body {
+  background: #f5f7fb;
+}
+.navbar-brand {
+  font-weight: 700;
+}
+h2, h3 {
+  font-weight: 600;
+}
