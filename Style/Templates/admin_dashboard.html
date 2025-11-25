@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Admin Panel</h3>
+
+<p class="mt-2">
+  <strong>Total:</strong> {{ total }}
+  &nbsp; | &nbsp;
+  <strong>Pending:</strong> {{ pending }}
+  &nbsp; | &nbsp;
+  <strong>Resolved:</strong> {{ resolved }}
+</p>
+
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Dept</th>
+      <th>Sentiment</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for c in complaints %}
+    <tr>
+      <td>{{ c.id }}</td>
+      <td>{{ c.name }}</td>
+      <td>{{ c.ctype }}</td>
+      <td>{{ c.category }}</td>
+      <td>{{ c.department }}</td>
+      <td>{{ c.sentiment }}</td>
+      <td>{{ c.priority }}</td>
+      <td>{{ c.status }}</td>
+      <td>
+        <form method="post" action="{{ url_for('update_complaint_status', cid=c.id) }}" class="d-flex">
+          <select name="status" class="form-select form-select-sm me-1">
+            <option {% if c.status=='Submitted' %}selected{% endif %}>Submitted</option>
+            <option {% if c.status=='Under Review' %}selected{% endif %}>Under Review</option>
+            <option {% if c.status=='In Process' %}selected{% endif %}>In Process</option>
+            <option {% if c.status=='Resolved' %}selected{% endif %}>Resolved</option>
+          </select>
+          <button class="btn btn-sm btn-success" type="submit">Save</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
