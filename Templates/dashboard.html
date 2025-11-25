@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Your Complaints / Suggestions</h3>
+
+{% if complaints %}
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Dept</</th>
+      <th>Sentiment</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for c in complaints %}
+    <tr>
+      <td>{{ c.id }}</td>
+      <td>{{ c.ctype }}</td>
+      <td>{{ c.category }}</td>
+      <td>{{ c.department }}</td>
+      <td>{{ c.sentiment }}</td>
+      <td>{{ c.priority }}</td>
+      <td>{{ c.status }}</td>
+      <td>{{ c.created_at.strftime('%Y-%m-%d') }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="mt-3">No complaints yet.</p>
+{% endif %}
+{% endblock %}
